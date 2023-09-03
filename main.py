@@ -10,6 +10,7 @@ import numpy as np
 
 import time as timer
 
+
 def model_creation():
     model = Model(nnodes=2)
     model._delt = 1
@@ -51,6 +52,7 @@ def model_creation():
 
     return model
 
+
 if __name__ == '__main__':
     start_time = timer.time()
     load_follow_operations = np.array(
@@ -64,7 +66,7 @@ if __name__ == '__main__':
          # [13 * 3600, 75],
          # [14 * 3600, 100],
          # [16 * 3600, 100],
-         #[24 * 3600, 100],
+         # [24 * 3600, 100],
          ]
     )
     models_queue = Queue()
@@ -80,12 +82,12 @@ if __name__ == '__main__':
         models=models_queue,
         begin_st=begin_st,
         load_follow_operations=load_follow_operations,
-        optimization_type=0, # 0- водообмен, 1 -потеря энергвыработки !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        evristic_strategy_type = 2,
-                    #0:  # индивидуальное управление рабочей группой №12
-                    #1:  # индивидуальное управление рабочей группой №11
-                    #2:  # перехват на 50% и остановка движения группы на 50% от высоты зоны
-                    #3:  # стандартное движение на 50% и остановка движения группы внизу зоны
+        optimization_type=0,  # 0- водообмен, 1 -потеря энергвыработки !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        evristic_strategy_type=2,
+        # 0:  # индивидуальное управление рабочей группой №12
+        # 1:  # индивидуальное управление рабочей группой №11
+        # 2:  # перехват на 50% и остановка движения группы на 50% от высоты зоны
+        # 3:  # стандартное движение на 50% и остановка движения группы внизу зоны
         semaphore_size=semaphore_size
     )
 
@@ -131,8 +133,6 @@ if __name__ == '__main__':
 
     h_total0 = 1 - h_total0
     h_total1 = 1 - h_total1
-
-
 
     print("Количество шагов по этапам: ", dyn_prog.number_of_states_per_stage)
     end_time = timer.time()
@@ -193,7 +193,3 @@ if __name__ == '__main__':
     axs[2].set_xlabel('Время, ч')
 
     plt.show()
-
-
-
-    # shutil.rmtree('tracks_info')
